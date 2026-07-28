@@ -1,3 +1,4 @@
+import boardgame.Board;
 import boardgame.Position;
 
 public class App {
@@ -6,5 +7,6 @@ public class App {
         Position pos = new Position(3, 5);
         System.out.println(pos.toString());
         
+        Board board = new Board(8, 8);
     }
 }
