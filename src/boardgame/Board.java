@@ -11,7 +11,6 @@ public class Board {
         if (rows < 1 || columns < 1) {
             throw new BoardException("Erro colocando tabuleiro: é necessário que haja pelo menos 1 linha e 1 coluna.");
         }
-        
         this.rows = rows;
         this.columns = columns;
         pieces = new Piece[rows][columns];
@@ -46,6 +45,19 @@ public class Board {
         pieces[position.getRow()][position.getColumn()] = piece;
         piece.position = position;
     }
+
+    public Piece removePiece(Position position) {
+        if (!positionExists(position)) {
+            throw new BoardException("Posição não existe no tabuleiro.");
+        }
+        if (piece(position) == null) {
+            return null;
+        }
+        Piece aux = piece(position);
+        aux.position = null;
+        pieces[position.getRow()][position.getColumn()] = null;
+        return aux;
+    } 
 
     private boolean positionExists(int row, int column) {
         return row >= 0 && row < rows && column >= 0 && column < columns;
